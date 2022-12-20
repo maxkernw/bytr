@@ -22,7 +22,8 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final user = const User(name: '3 Rum 75 m2', adress: "Derpgatan 57", images: [
+  final user =
+      const User(name: '3 Rum 75 m2', address: "Derpgatan 57", images: [
     "https://marknad.byggvesta.se/byggvesta/files/jpg/file13660.jpg",
     "https://marknad.byggvesta.se/byggvesta/files/jpg/file13659.jpg",
     "https://marknad.byggvesta.se/byggvesta/files/jpg/file13658.jpg",

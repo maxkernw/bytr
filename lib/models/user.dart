@@ -1,6 +1,8 @@
 class User {
   final String name;
-  final String adress;
+  final String address;
   final List<String> images;
-  const User({required this.name, required this.adress, required this.images});
+  const User({required this.name, required this.address, required this.images});
 }
+
+class Address {}

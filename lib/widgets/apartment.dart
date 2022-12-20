@@ -67,7 +67,7 @@ class _ApartmentCardState extends State<ApartmentCard> {
 
   buildAdress() => Row(children: [
         Text(
-          widget.user.adress,
+          widget.user.address,
           style: const TextStyle(fontSize: 32, color: Colors.white),
         )
       ]);
