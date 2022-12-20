@@ -63,7 +63,7 @@ class TradeProvider extends ChangeNotifier {
   void resetTrades() {
     _users = <User>[
       const User(
-          name: '3 Rum 75 m2',
+          name: 'Bob',
           apartment: Apartment(
               landlord: "Stockholmshem",
               rooms: 4,
@@ -84,7 +84,7 @@ class TradeProvider extends ChangeNotifier {
             "https://marknad.byggvesta.se/byggvesta/files/jpg/file14659.jpg"
           ]),
       const User(
-          name: '6 Rum 75 m2',
+          name: 'Bosse',
           address: Address(
               postalcode: "11123",
               street: "Göteborgsgatan 3",

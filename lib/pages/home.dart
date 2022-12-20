@@ -89,7 +89,7 @@ class _HomeState extends State<Home> {
       );
 
   Widget buildButtons() =>
-      Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+      Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         ElevatedButton(
             onPressed: () {
               final provider =
