@@ -22,11 +22,15 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final user = const User(
-      name: '3 Rum 75 m2',
-      adress: "Derpgatan 57",
-      image:
-          "https://www.phillyaptrentals.com/wp-content/uploads/2020/12/apartment-building-what-makes-good-apartment-building-scaled.jpg");
+  final user = const User(name: '3 Rum 75 m2', adress: "Derpgatan 57", images: [
+    "https://marknad.byggvesta.se/byggvesta/files/jpg/file13660.jpg",
+    "https://marknad.byggvesta.se/byggvesta/files/jpg/file13659.jpg",
+    "https://marknad.byggvesta.se/byggvesta/files/jpg/file13658.jpg",
+    "https://marknad.byggvesta.se/byggvesta/files/jpg/file13657.jpg",
+    "https://marknad.byggvesta.se/byggvesta/files/jpg/file12581.jpg",
+    "https://marknad.byggvesta.se/byggvesta/files/jpg/file14655.jpg",
+    "https://marknad.byggvesta.se/byggvesta/files/jpg/file14659.jpg"
+  ]);
 
   @override
   Widget build(BuildContext context) => Container(

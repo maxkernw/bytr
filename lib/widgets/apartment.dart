@@ -14,14 +14,18 @@ class ApartmentCard extends StatefulWidget {
 class _ApartmentCardState extends State<ApartmentCard> {
   @override
   Widget build(BuildContext context) => ClipRRect(
-      borderRadius: BorderRadius.circular(20),
-      child: GestureDetector(
-          child: Container(
+        borderRadius: BorderRadius.circular(20),
+        child: GestureDetector(
+          child: Hero(
+            tag: "HeroOne",
+            child: Container(
               decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: NetworkImage(widget.user.image),
-                      fit: BoxFit.cover,
-                      alignment: const Alignment(-0.3, 0))),
+                image: DecorationImage(
+                  image: NetworkImage(widget.user.images[0]),
+                  fit: BoxFit.cover,
+                  alignment: const Alignment(-0.3, 0),
+                ),
+              ),
               child: Container(
                 decoration: const BoxDecoration(
                     gradient: LinearGradient(
@@ -40,11 +44,17 @@ class _ApartmentCardState extends State<ApartmentCard> {
                     ],
                   ),
                 ),
-              )),
+              ),
+            ),
+          ),
           onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const SecondRoute()),
-              )));
+            context,
+            MaterialPageRoute(
+              builder: (context) => SecondRoute(user: widget.user),
+            ),
+          ),
+        ),
+      );
 
   Widget buildName() => Row(children: [
         Text(widget.user.name,
@@ -64,20 +74,46 @@ class _ApartmentCardState extends State<ApartmentCard> {
 }
 
 class SecondRoute extends StatelessWidget {
-  const SecondRoute({super.key});
+  final User user;
+  const SecondRoute({Key? key, required this.user}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Second Route'),
-      ),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () => Navigator.pop(context),
-          child: const Text('Go back!'),
+  Widget build(BuildContext context) => Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [Colors.blue.shade400, Colors.black],
         ),
       ),
-    );
-  }
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        body: Center(
+          child: GestureDetector(
+            onTap: () => Navigator.pop(context),
+            child: Hero(
+              tag: "HeroOne",
+              child: PageView.builder(
+                itemCount: user.images.length,
+                pageSnapping: true,
+                itemBuilder: (context, pagePosition) {
+                  return Container(
+                      margin: EdgeInsets.all(10),
+                      child: Image.network(user.images[pagePosition]));
+                },
+              ),
+            ),
+          ),
+        ),
+      ));
 }
+
+
+
+// Container(
+//       decoration: BoxDecoration(
+//           gradient: LinearGradient(
+//               begin: Alignment.topCenter,
+//               end: Alignment.bottomCenter,
+//               colors: [Colors.blue.shade200, Colors.black])),
+//       child: Scaffold(
