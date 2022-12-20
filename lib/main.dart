@@ -21,7 +21,7 @@ class App extends StatelessWidget {
             primarySwatch: Colors.purple,
             elevatedButtonTheme: ElevatedButtonThemeData(
                 style: ElevatedButton.styleFrom(
-                    elevation: 8, minimumSize: const Size.square(80)))),
+                    elevation: 8, minimumSize: const Size.square(40)))),
         home: const Home(title: 'Bytr'),
       ));
 }

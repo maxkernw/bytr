@@ -42,7 +42,7 @@ class _HomeState extends State<Home> {
                 buildLogo(),
                 const SizedBox(height: 16),
                 Expanded(child: buildCards()),
-                const SizedBox(height: 16),
+                const SizedBox(height: 8),
                 buildButtons()
               ],
             ),
