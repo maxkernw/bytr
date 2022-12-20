@@ -1,7 +1,7 @@
+import 'package:bytr/providers/trade.provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-import '../models/address.dart';
-import '../models/user.dart';
 import '../widgets/apartment.dart';
 
 class Home extends StatefulWidget {
@@ -23,23 +23,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final user = const User(
-      name: '3 Rum 75 m2',
-      address: Address(
-          postalcode: "12070",
-          street: "Högbergsgatansgränd 75A",
-          city: "Stockholm",
-          floor: 4),
-      images: [
-        "https://marknad.byggvesta.se/byggvesta/files/jpg/file13660.jpg",
-        "https://marknad.byggvesta.se/byggvesta/files/jpg/file13659.jpg",
-        "https://marknad.byggvesta.se/byggvesta/files/jpg/file13658.jpg",
-        "https://marknad.byggvesta.se/byggvesta/files/jpg/file13657.jpg",
-        "https://marknad.byggvesta.se/byggvesta/files/jpg/file12581.jpg",
-        "https://marknad.byggvesta.se/byggvesta/files/jpg/file14655.jpg",
-        "https://marknad.byggvesta.se/byggvesta/files/jpg/file14659.jpg"
-      ]);
-
   @override
   Widget build(BuildContext context) => Container(
       decoration: BoxDecoration(
@@ -52,21 +35,47 @@ class _HomeState extends State<Home> {
         body: SafeArea(
           child: Container(
             padding: const EdgeInsets.all(16),
-            child: Column(children: [
-              buildLogo(),
-              const SizedBox(height: 16),
-              Expanded(child: ApartmentCard(user: user)),
-              const SizedBox(height: 16),
-              buildButtons()
-            ]),
+            child: Column(
+              children: [
+                buildLogo(),
+                const SizedBox(height: 16),
+                Expanded(child: buildCards()),
+                const SizedBox(height: 16),
+                buildButtons()
+              ],
+            ),
           ),
         ),
       ));
+  Widget buildCards() {
+    final provider = Provider.of<TradeProvider>(context);
+    final users = provider.users;
+
+    return users.isEmpty
+        ? Center(
+            child: ElevatedButton(
+              child: const Text("Börja om"),
+              onPressed: () {
+                final provider =
+                    Provider.of<TradeProvider>(context, listen: false);
+                provider.resetTrades();
+              },
+            ),
+          )
+        : Stack(
+            children: users
+                .map((user) => ApartmentCard(
+                      user: user,
+                      isFirst: users.last == user,
+                    ))
+                .toList(),
+          );
+  }
 
   Widget buildLogo() => Row(
         children: const [
           Icon(
-            Icons.local_pizza_rounded,
+            Icons.home_filled,
             color: Colors.white,
             size: 36,
           ),
@@ -82,25 +91,24 @@ class _HomeState extends State<Home> {
   Widget buildButtons() =>
       Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
         ElevatedButton(
-            onPressed: () {},
-            child: const Icon(
-              Icons.clear,
-              color: Color.fromARGB(153, 244, 67, 54),
-              size: 40,
+            onPressed: () {
+              final provider =
+                  Provider.of<TradeProvider>(context, listen: false);
+              provider.like();
+            },
+            child: const Text(
+              "Intresserad",
+              style: TextStyle(color: Colors.white),
             )),
         ElevatedButton(
-            onPressed: () {},
-            child: const Icon(
-              Icons.star,
-              color: Color.fromARGB(157, 255, 235, 59),
-              size: 40,
-            )),
-        ElevatedButton(
-            onPressed: () {},
-            child: const Icon(
-              Icons.favorite,
-              color: Color.fromARGB(150, 76, 175, 79),
-              size: 40,
-            )),
+          onPressed: () {
+            final provider = Provider.of<TradeProvider>(context, listen: false);
+            provider.dislike();
+          },
+          child: const Text(
+            "Ej Intresserad",
+            style: TextStyle(color: Colors.white),
+          ),
+        ),
       ]);
 }

@@ -1,17 +1,3 @@
-import 'address.dart';
-
-class User {
-  final String name;
-  final Address address;
-  final Apartment apartment;
-  final List<String> images;
-  const User(
-      {required this.name,
-      required this.address,
-      required this.images,
-      required this.apartment});
-}
-
 class Apartment {
   final String landlord;
   final int rooms;
