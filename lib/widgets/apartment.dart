@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import '../models/user.dart';
 import '../pages/detailed.dart';
 import '../providers/trade.provider.dart';
+import 'address.dart';
 
 class ApartmentCard extends StatefulWidget {
   final User user;
@@ -100,7 +101,12 @@ class _ApartmentCardState extends State<ApartmentCard> {
                 child: Container(
                   padding: const EdgeInsets.all(20),
                   child: Column(
-                    children: [const Spacer(flex: 2), buildAdress()],
+                    children: [
+                      const Spacer(flex: 2),
+                      AddressWidget(
+                        user: widget.user,
+                      )
+                    ],
                   ),
                 ),
               ),
@@ -116,50 +122,4 @@ class _ApartmentCardState extends State<ApartmentCard> {
                 fontWeight: FontWeight.bold)),
         const SizedBox(width: 16),
       ]);
-
-  buildAdress() => Container(
-        padding: const EdgeInsets.all(8),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(widget.user.apartment.landlord,
-                style: const TextStyle(fontSize: 22, color: Colors.white)),
-            Text(
-              widget.user.address.street,
-              style: const TextStyle(fontSize: 22, color: Colors.white),
-            ),
-            Text(
-              "${widget.user.address.postalcode} ${widget.user.address.city}",
-              style: const TextStyle(fontSize: 22, color: Colors.white),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Kvm: ${widget.user.apartment.sqm}",
-                  style: const TextStyle(fontSize: 15, color: Colors.white),
-                ),
-                Text(
-                  "Rum: ${widget.user.apartment.rooms}",
-                  style: const TextStyle(fontSize: 15, color: Colors.white),
-                ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Våning: ${widget.user.apartment.floor}",
-                  style: const TextStyle(fontSize: 15, color: Colors.white),
-                ),
-                Text(
-                  "Hiss: ${widget.user.apartment.elevator ? 'ja' : 'nej'}",
-                  style: const TextStyle(fontSize: 15, color: Colors.white),
-                ),
-              ],
-            ),
-          ],
-        ),
-      );
 }

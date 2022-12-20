@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../models/user.dart';
+import '../widgets/address.dart';
 
 class DetailedView extends StatelessWidget {
   final User user;
@@ -35,33 +36,9 @@ class DetailedView extends StatelessWidget {
                             flex: 2,
                             child: Image.network(user.images[pagePosition]),
                           ),
-                          Expanded(
-                              flex: 1,
-                              child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "Kvm: ${user.apartment.sqm}",
-                                      textAlign: TextAlign.start,
-                                      style: const TextStyle(
-                                          fontSize: 23, color: Colors.white),
-                                    ),
-                                    Text(
-                                      "Rum: ${user.apartment.rooms}",
-                                      style: const TextStyle(
-                                          fontSize: 23, color: Colors.white),
-                                    ),
-                                    Text(
-                                      "Våning: ${user.apartment.floor}",
-                                      style: const TextStyle(
-                                          fontSize: 23, color: Colors.white),
-                                    ),
-                                    Text(
-                                      "Hiss: ${user.apartment.elevator ? 'ja' : 'nej'}",
-                                      style: const TextStyle(
-                                          fontSize: 23, color: Colors.white),
-                                    )
-                                  ]))
+                          AddressWidget(
+                            user: user,
+                          )
                         ],
                       ),
                     ),
