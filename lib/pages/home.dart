@@ -26,10 +26,12 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) => Container(
       decoration: BoxDecoration(
-          gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [Colors.blue.shade200, Colors.black])),
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [Colors.purple.shade400, Colors.purple.shade900],
+        ),
+      ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
         body: SafeArea(
@@ -83,7 +85,9 @@ class _HomeState extends State<Home> {
           Text(
             'Bytr',
             style: TextStyle(
-                fontSize: 36, fontWeight: FontWeight.bold, color: Colors.white),
+                fontSize: 36,
+                fontWeight: FontWeight.bold,
+                color: Color.fromARGB(255, 234, 177, 244)),
           )
         ],
       );

@@ -16,8 +16,9 @@ class App extends StatelessWidget {
       create: (context) => TradeProvider(),
       child: MaterialApp(
         title: 'Bytr',
+        color: Colors.purple.shade400,
         theme: ThemeData(
-            primarySwatch: Colors.lightBlue,
+            primarySwatch: Colors.purple,
             elevatedButtonTheme: ElevatedButtonThemeData(
                 style: ElevatedButton.styleFrom(
                     elevation: 8, minimumSize: const Size.square(80)))),

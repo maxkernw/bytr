@@ -13,7 +13,7 @@ class DetailedView extends StatelessWidget {
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [Colors.blue.shade400, Colors.black],
+            colors: [Colors.purple.shade400, Colors.purple.shade900],
           ),
         ),
         child: Scaffold(
@@ -29,7 +29,7 @@ class DetailedView extends StatelessWidget {
                     itemCount: user.images.length,
                     pageSnapping: true,
                     itemBuilder: (context, pagePosition) => Container(
-                      margin: const EdgeInsets.all(4),
+                      margin: const EdgeInsets.all(20),
                       child: Column(
                         children: [
                           Expanded(
