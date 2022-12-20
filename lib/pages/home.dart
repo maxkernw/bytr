@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../models/address.dart';
 import '../models/user.dart';
 import '../widgets/apartment.dart';
 
@@ -22,16 +23,22 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final user =
-      const User(name: '3 Rum 75 m2', address: "Derpgatan 57", images: [
-    "https://marknad.byggvesta.se/byggvesta/files/jpg/file13660.jpg",
-    "https://marknad.byggvesta.se/byggvesta/files/jpg/file13659.jpg",
-    "https://marknad.byggvesta.se/byggvesta/files/jpg/file13658.jpg",
-    "https://marknad.byggvesta.se/byggvesta/files/jpg/file13657.jpg",
-    "https://marknad.byggvesta.se/byggvesta/files/jpg/file12581.jpg",
-    "https://marknad.byggvesta.se/byggvesta/files/jpg/file14655.jpg",
-    "https://marknad.byggvesta.se/byggvesta/files/jpg/file14659.jpg"
-  ]);
+  final user = const User(
+      name: '3 Rum 75 m2',
+      address: Address(
+          postalcode: "12070",
+          street: "Högbergsgatansgränd 75A",
+          city: "Stockholm",
+          floor: 4),
+      images: [
+        "https://marknad.byggvesta.se/byggvesta/files/jpg/file13660.jpg",
+        "https://marknad.byggvesta.se/byggvesta/files/jpg/file13659.jpg",
+        "https://marknad.byggvesta.se/byggvesta/files/jpg/file13658.jpg",
+        "https://marknad.byggvesta.se/byggvesta/files/jpg/file13657.jpg",
+        "https://marknad.byggvesta.se/byggvesta/files/jpg/file12581.jpg",
+        "https://marknad.byggvesta.se/byggvesta/files/jpg/file14655.jpg",
+        "https://marknad.byggvesta.se/byggvesta/files/jpg/file14659.jpg"
+      ]);
 
   @override
   Widget build(BuildContext context) => Container(

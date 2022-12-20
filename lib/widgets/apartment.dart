@@ -65,12 +65,22 @@ class _ApartmentCardState extends State<ApartmentCard> {
         const SizedBox(width: 16),
       ]);
 
-  buildAdress() => Row(children: [
+  buildAdress() => FittedBox(
+      fit: BoxFit.scaleDown,
+      child: Column(children: [
         Text(
-          widget.user.address,
+          widget.user.address.street,
           style: const TextStyle(fontSize: 32, color: Colors.white),
-        )
-      ]);
+        ),
+        Text(
+          "${widget.user.address.postalcode} ${widget.user.address.city}",
+          style: const TextStyle(fontSize: 32, color: Colors.white),
+        ),
+        Text(
+          "Våning: ${widget.user.address.floor}",
+          style: const TextStyle(fontSize: 32, color: Colors.white),
+        ),
+      ]));
 }
 
 class SecondRoute extends StatelessWidget {
@@ -79,41 +89,32 @@ class SecondRoute extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [Colors.blue.shade400, Colors.black],
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [Colors.blue.shade400, Colors.black],
+          ),
         ),
-      ),
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        body: Center(
-          child: GestureDetector(
-            onTap: () => Navigator.pop(context),
-            child: Hero(
-              tag: "HeroOne",
-              child: PageView.builder(
-                itemCount: user.images.length,
-                pageSnapping: true,
-                itemBuilder: (context, pagePosition) {
-                  return Container(
-                      margin: EdgeInsets.all(10),
-                      child: Image.network(user.images[pagePosition]));
-                },
+        child: Scaffold(
+          backgroundColor: Colors.transparent,
+          body: Center(
+            child: GestureDetector(
+              onTap: () => Navigator.pop(context),
+              child: Hero(
+                tag: "HeroOne",
+                child: PageView.builder(
+                  itemCount: user.images.length,
+                  pageSnapping: true,
+                  itemBuilder: (context, pagePosition) {
+                    return Container(
+                        margin: const EdgeInsets.all(10),
+                        child: Image.network(user.images[pagePosition]));
+                  },
+                ),
               ),
             ),
           ),
         ),
-      ));
+      );
 }
-
-
-
-// Container(
-//       decoration: BoxDecoration(
-//           gradient: LinearGradient(
-//               begin: Alignment.topCenter,
-//               end: Alignment.bottomCenter,
-//               colors: [Colors.blue.shade200, Colors.black])),
-//       child: Scaffold(
